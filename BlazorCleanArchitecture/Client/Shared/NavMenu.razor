@@ -1,0 +1,31 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
+
+<style>
+    .mb-n2 {
+        color: #adadb1;
+    }
+</style>
+<MudNavMenu Style="margin-top:15px;">
+
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Home"]</MudListSubheader>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Dashboard">
+        @_localizer["Dashboard"]
+    </MudNavLink>
+
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Catalog Management"]</MudListSubheader>
+    <MudNavLink Href="/features/brands" Icon="@Icons.Material.Outlined.TableChart">
+        @_localizer["Brands"]
+    </MudNavLink>
+    <MudNavLink Href="/features/products" Icon="@Icons.Material.Outlined.LocalMall">
+        @_localizer["Products"]
+    </MudNavLink>
+
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Developer"]</MudListSubheader>
+    <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Rounded.SettingsEthernet">
+        @_localizer["Swagger"]
+    </MudNavLink>
+    <MudNavLink Href="pages/error/402" Icon="@Icons.Material.Outlined.DeveloperMode">
+        @_localizer["Code Repository"]
+    </MudNavLink>
+
+</MudNavMenu>

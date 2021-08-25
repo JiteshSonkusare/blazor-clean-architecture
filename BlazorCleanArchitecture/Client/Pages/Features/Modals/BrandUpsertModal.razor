@@ -1,0 +1,53 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<BrandUpsertModal> _localizer
+
+<EditForm Model="@BrandUpsertCommandModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (BrandUpsertCommandModel.Id == Guid.Empty)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.AddBox" Class="mr-3 mb-n1" />
+                        @_localizer["Add Brand"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.EditNote" Class="mr-3 mb-n1" />
+                        @_localizer["Update Brand"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (BrandUpsertCommandModel.Id != Guid.Empty)
+                {
+                    <MudItem xs="12" md="8">
+                        <MudTextField Disabled For="@(() => BrandUpsertCommandModel.Id)" @bind-Value="BrandUpsertCommandModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                    <MudItem xs="12" md="4"></MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => BrandUpsertCommandModel.Name)" @bind-Value="BrandUpsertCommandModel.Name" Label="@_localizer["Name"]" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => BrandUpsertCommandModel.Description)" @bind-Value="BrandUpsertCommandModel.Description" Label="@_localizer["Description"]" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (BrandUpsertCommandModel.Id != Guid.Empty)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

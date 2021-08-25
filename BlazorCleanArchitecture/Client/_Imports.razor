@@ -1,0 +1,31 @@
+﻿@*Libraries*@
+@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.JSInterop
+@using MudBlazor
+@using Blazored.LocalStorage;
+@using Blazored.FluentValidation
+
+@using Client
+@using Client.Shared
+@using Client.Shared.Components
+
+@using Client.Infrastructure.Settings
+@using Client.Infrastructure.Managers.Preferences
+@using Client.Infrastructure.Managers.Dashboard
+
+@inject NavigationManager _navigationManager
+@inject ISnackbar _snackBar
+@inject IDialogService _dialogService
+@inject ClientPreferenceManager _clientPreferenceManager
+@inject ILocalStorageService _localStorage;
+@inject IJSRuntime _jsRuntime;
+
+@using Microsoft.Extensions.Localization
