@@ -1,8 +1,10 @@
 ﻿using BlazorCleanArchitecture.Shared.Constants.Application;
 using BlazorCleanArchitecture.Shared.Constants.Localization;
+using Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Server.Hubs;
 using Server.Middlewares;
@@ -21,6 +23,18 @@ namespace Server.Extensions
             {
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
+            }
+
+            return app;
+        }
+
+        internal static IApplicationBuilder MigrateDatabase(
+            this IApplicationBuilder app,
+            IWebHostEnvironment env, CleanFavAdminContext cleanFavAdminContext)
+        {
+            if (env.IsDevelopment())
+            {
+                cleanFavAdminContext.Database.Migrate();
             }
 
             return app;

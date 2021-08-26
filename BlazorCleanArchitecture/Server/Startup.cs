@@ -53,6 +53,7 @@ namespace Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.MigrateDatabase();
             app.UseCors();
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
